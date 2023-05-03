@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listUsers } from '../actions/userActions'
@@ -14,7 +14,7 @@ const UserListScreen = () => {
   const userList = useSelector((state) => state.userList)
   const { loading, error, users } = userList
 
-  const userLogin = useSelector((state) => state.userList)
+  const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const UserListScreen = () => {
     } else {
       navigate('/login')
     }
-  }, [dispatch, userInfo, navigate])
+  }, [dispatch, navigate, userInfo])
 
   const deleteHandler = (id) => {
     console.log('delete')
